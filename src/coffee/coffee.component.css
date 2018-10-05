@@ -1,0 +1,63 @@
+:host {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    width: 100%;
+    background-color: #422912;
+}
+
+.header h3 {
+    text-align: center;
+    color: white;
+}
+
+.content {
+    flex: 1;
+    display: block;
+    
+}
+
+.content .table {
+    display: inline-block;
+    width: 40vw;
+    background-color: #775333;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.content .container {
+    width: calc(100vw - 18px);
+    margin: auto;
+}
+
+.content .table .t-header {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px gray solid;
+}
+.content .table .t-body {
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.t-body .status {
+    background-color: #F1FF2E;
+    padding: 0.5rem;
+}
+
+.t-body .order {
+    padding: 0.5rem;
+}
+
+.footer {
+    height: 60px;
+    width: 100%;
+    box-shadow: 1px 1px 1px 1px black;
+}
