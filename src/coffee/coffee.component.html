@@ -3,63 +3,11 @@
 </div>
 
 <div class="content">
-    <div class="container">
-        <div class="table">
-            <div class="t-header">
-                <label>TAB.01</label>
-                <label>Mr.Quynh</label>
-            </div>
-            <div class="t-body">
-                <div class="order">
-                    3 Order
-                </div>
-                <div class="status">
-                    Ready
-                </div>
-            </div>
-        </div>
-        <div class="table">
-            <div class="t-header">
-                <label>TAB.01</label>
-                <label>Mr.Quynh</label>
-            </div>
-            <div class="t-body">
-                <div class="order">
-                    3 Order
-                </div>
-                <div class="status">
-                    Ready
-                </div>
-            </div>
-        </div>
-        <div class="table">
-            <div class="t-header">
-                <label>TAB.01</label>
-                <label>Mr.Quynh</label>
-            </div>
-            <div class="t-body">
-                <div class="order">
-                    3 Order
-                </div>
-                <div class="status">
-                    Ready
-                </div>
-            </div>
-        </div>
-        <div class="table">
-            <div class="t-header">
-                <label>TAB.01</label>
-                <label>Mr.Quynh</label>
-            </div>
-            <div class="t-body">
-                <div class="order">
-                    3 Order
-                </div>
-                <div class="status">
-                    Ready
-                </div>
-            </div>
-        </div>
+    <div class="container" *ngIf="tables.length">
+        <app-table *ngFor="let table of tables"></app-table>
+    </div>
+    <div *ngIf="!tables.length" style="text-align: center;">
+        No Tables
     </div>
 </div>
 
