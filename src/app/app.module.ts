@@ -4,13 +4,15 @@ import { NgModule } from '@angular/core';
 import { CoffeeComponent } from './coffee/coffee.component';
 import { TableComponent } from './table/table.component';
 import { LoginComponent } from './login/login.component';
+import { TableStatusPipe } from './pipes/table-status.pipe';
 
 
 @NgModule({
   declarations: [
     CoffeeComponent,
     TableComponent,
-    LoginComponent
+    LoginComponent,
+    TableStatusPipe
   ],
   imports: [
     BrowserModule,

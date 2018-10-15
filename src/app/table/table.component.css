@@ -26,3 +26,15 @@
 .t-body .order {
     padding: 0.5rem;
 }
+
+
+.table .available  {
+    background-color: green;
+}
+.table .serving  {
+    background-color: yellow;
+}
+
+.table .closed  {
+    background-color: red;
+}

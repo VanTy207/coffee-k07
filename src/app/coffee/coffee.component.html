@@ -1,10 +1,10 @@
 <div class="header">
-    <h3>TABLE</h3>
+    <h3>{{currentTable}}</h3>
 </div>
 
 <div class="content">
     <div class="container" *ngIf="tables.length">
-        <app-table *ngFor="let table of tables" [table]="table"></app-table>
+        <app-table *ngFor="let table of tables" [table]="table" (onTable)="onTapTable($event)"></app-table>
     </div>
     <div *ngIf="!tables.length" style="text-align: center;">
         No Tables
