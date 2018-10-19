@@ -5,6 +5,7 @@ import { CoffeeComponent } from './coffee/coffee.component';
 import { TableComponent } from './table/table.component';
 import { LoginComponent } from './login/login.component';
 import { TableStatusPipe } from './pipes/table-status.pipe';
+import { TableService } from './services/table.service';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { TableStatusPipe } from './pipes/table-status.pipe';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    TableService
+  ],
     bootstrap: [CoffeeComponent]
 })
 export class AppModule { }

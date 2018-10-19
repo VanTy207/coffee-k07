@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITable } from '../interfaces/ITable';
 import { ITab } from '../interfaces/ITab';
+import { TableService } from '../services/table.service';
 
 @Component({
     selector: 'coffee-root',
@@ -15,37 +16,13 @@ export class CoffeeComponent implements OnInit {
         { name: 'order', icon: 'assets/shopping-cart.png'}, 
         { name: 'profile', icon: 'assets/avatar.png' },
     ];
-    constructor() {
+    
+    constructor(private tableService: TableService) {
     }
 
     ngOnInit() {
-        this.tables = [{
-            name: 'Table 1',
-            orderName: 'Quynh',
-            totalDishes: 5,
-            status: 2
-        },{
-            name: 'Table 2',
-            orderName: 'Tuan',
-            totalDishes: 3,
-            status: 1
-        },
-        {
-            name: 'Table 3',
-            orderName: 'Tuan 1',
-            totalDishes: 3,
-            status: 3
-        },
-        {
-            name: 'Table 4',
-            orderName: 'Tuan 2',
-            totalDishes: 3,
-            status: 1
-        }];
-
-        // setTimeout(() => {
-        //     this.tables.pop();
-        // }, 3000);
+        this.tableService.getTables();
+        this.tables = this.tableService.tables;
     }
     
     clickTab(item: ITab): void{
@@ -54,5 +31,19 @@ export class CoffeeComponent implements OnInit {
 
     onTapTable(table: ITable) {
         this.currentTable = table.name;
+    }
+
+    addTable() {
+        const newTable: ITable = {
+            name: 'New',
+            orderName: 'None',
+            status: 1,
+            totalDishes: 0
+        }
+        this.tableService.addTable(newTable)
+    }
+
+    changeStatus() {
+        this.tableService.changeStatusTable('Table 3', 1);
     }
 }
