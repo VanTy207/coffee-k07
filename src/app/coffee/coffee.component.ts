@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ITable } from '../interfaces/ITable';
 import { ITab } from '../interfaces/ITab';
 import { TableService } from '../services/table.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'coffee-root',
@@ -17,7 +18,7 @@ export class CoffeeComponent implements OnInit {
         { name: 'profile', icon: 'assets/avatar.png' },
     ];
     
-    constructor(private tableService: TableService) {
+    constructor(private tableService: TableService, private router: Router) {
     }
 
     ngOnInit() {
@@ -31,6 +32,11 @@ export class CoffeeComponent implements OnInit {
 
     onTapTable(table: ITable) {
         this.currentTable = table.name;
+        if (table.id) {
+            this.router.navigate(['order/' + table.id]);
+        } else {
+            alert('Table is not valid');
+        }
     }
 
     addTable() {
