@@ -1,2 +1,19 @@
-<app-header [title]="'Order'" [canBack]="'tables'" ></app-header>
-<h2>{{table?.name}}</h2>
+<app-header [title]="'Order'" [canBack]="'tables'"></app-header>
+<div class="content">
+    <div class="table-info">
+        <div class="name">
+            <h3>{{table.name}}</h3>
+            <div class="line"></div>
+        </div>
+        <div class="customer">
+            <h6>Customer's Name</h6>
+            <h4>{{table.orderName}}</h4>
+        </div>
+    </div>
+    <div class="filter">
+        <app-food-filter *ngFor="let item of filters" [filter]="item" [activated]="item.active" (click)="selectFilter(item)"></app-food-filter>
+    </div>
+    <div class="food">
+        <app-food></app-food>
+    </div>
+</div>
