@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, Output, EventEmitter } from "@angular/core";
-import { ITable } from "../interfaces/ITable";
-
+import { ITable } from "../../interfaces/ITable";
 @Component({
     selector: 'app-table',
     templateUrl: 'table.component.html',

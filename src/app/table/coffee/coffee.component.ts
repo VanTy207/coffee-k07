@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ITable } from '../interfaces/ITable';
-import { ITab } from '../interfaces/ITab';
-import { TableService } from '../services/table.service';
+import { ITable } from '../../interfaces/ITable';
+import { ITab } from '../../interfaces/ITab';
+import { TableService } from '../../core/services/table.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -14,6 +14,6 @@
         <app-food-filter *ngFor="let item of filters" [filter]="item" [activated]="item.active" (click)="selectFilter(item)"></app-food-filter>
     </div>
     <div class="food">
-        <app-food></app-food>
+        <app-food *ngFor="let food of foods" [food]="food"></app-food>
     </div>
 </div>

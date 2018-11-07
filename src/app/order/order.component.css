@@ -1,8 +1,15 @@
 :host {
-    display: block;
+    display: flex;
+    flex-direction: column;
     background-color: #EBEBEB;
     height: 100vh;
 }
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .table-info {
     background-color: #C8B496;
     padding-bottom: 1rem;
@@ -45,4 +52,13 @@ h3, h4, h6 {
 
 app-food-filter {
     margin-right: 0.5rem;
+}
+
+.food {
+    margin-top: 0.5rem;
+    overflow-y: scroll;
+}
+
+app-food {
+    margin-bottom: 1rem;
 }

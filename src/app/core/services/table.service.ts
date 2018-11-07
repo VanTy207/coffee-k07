@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ITable } from "../interfaces/ITable";
+import { ITable } from "../../interfaces/ITable";
 
 @Injectable()
 export class TableService {

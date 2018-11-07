@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ITable } from '../interfaces/ITable';
-import { TableService } from '../services/table.service';
+import { TableService } from '../core/services/table.service';
 import { IFoodFilter } from '../interfaces/IFoodFilter';
+import { IFood } from '../interfaces/IFood';
 
 @Component({
   selector: 'app-order',
@@ -12,6 +13,7 @@ import { IFoodFilter } from '../interfaces/IFoodFilter';
 export class OrderComponent implements OnInit {
   table: ITable;
   filters: IFoodFilter[];
+  foods: IFood[];
   constructor(private route: ActivatedRoute, private tableService: TableService) { }
 
   ngOnInit() {
@@ -47,6 +49,25 @@ export class OrderComponent implements OnInit {
     }, {
       icon: 'assets/tea-bag',
       title: 'Tea'
+    }]
+    
+    this.foods = [{
+      id: 1,
+      name: 'Capuchino',
+      price: 50000,
+      cover: 'assets/food-capuchino.jpeg'
+    },
+    {
+      id: 2,
+      name: 'Capuchino 1',
+      price: 50000,
+      cover: 'assets/food-capuchino.jpeg'
+    },
+    {
+      id: 2,
+      name: 'Capuchino 2',
+      price: 50000,
+      cover: 'assets/food-capuchino.jpeg'
     }]
   }
 
