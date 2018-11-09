@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     styleUrls: ['coffee.component.css']
 })
 export class CoffeeComponent implements OnInit {
-    tables: Array<ITable>;
+    tables: Array<ITable> = [];
     currentTable: String = 'Default';
     tabs: ITab[] = [
         { name: 'menu', icon: 'assets/coffee-beans.png' },
@@ -22,8 +22,9 @@ export class CoffeeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tableService.getTables();
-        this.tables = this.tableService.tables;
+        this.tableService.getTables().subscribe(data => {
+            this.tables = data;
+        })
     }
     
     clickTab(item: ITab): void{

@@ -1,5 +1,5 @@
 export interface ITable {
-    id?: number;
+    id?: string;
     name?: string;
     orderName?: string;
     totalDishes?: number;

@@ -17,9 +17,11 @@ export class OrderComponent implements OnInit {
   constructor(private route: ActivatedRoute, private tableService: TableService) { }
 
   ngOnInit() {
-    const id = parseInt(this.route.snapshot.params.tableId);
+    const id = this.route.snapshot.params.tableId;
     this.tableService.getTables();
-    this.table = this.tableService.getTableById(id);
+    this.tableService.getTableById(id).subscribe(data => {
+      this.table = data;
+    });
 
     this.filters = [{
       icon: 'assets/coffee',
