@@ -4,6 +4,7 @@ import { ITable } from '../interfaces/ITable';
 import { TableService } from '../core/services/table.service';
 import { IFoodFilter } from '../interfaces/IFoodFilter';
 import { IFood } from '../interfaces/IFood';
+import { FoodService } from '../core/services/food.service';
 
 @Component({
   selector: 'app-order',
@@ -14,11 +15,12 @@ export class OrderComponent implements OnInit {
   table: ITable;
   filters: IFoodFilter[];
   foods: IFood[];
-  constructor(private route: ActivatedRoute, private tableService: TableService) { }
+  constructor(private route: ActivatedRoute,
+    private tableService: TableService,
+    private foodService: FoodService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.tableId;
-    this.tableService.getTables();
     this.tableService.getTableById(id).subscribe(data => {
       this.table = data;
     });
@@ -53,24 +55,9 @@ export class OrderComponent implements OnInit {
       title: 'Tea'
     }]
     
-    this.foods = [{
-      id: 1,
-      name: 'Capuchino',
-      price: 50000,
-      cover: 'assets/food-capuchino.jpeg'
-    },
-    {
-      id: 2,
-      name: 'Capuchino 1',
-      price: 50000,
-      cover: 'assets/food-capuchino.jpeg'
-    },
-    {
-      id: 2,
-      name: 'Capuchino 2',
-      price: 50000,
-      cover: 'assets/food-capuchino.jpeg'
-    }]
+    this.foodService.getFoods().subscribe(data => {
+      this.foods = data;
+    })
   }
 
   selectFilter(filter: IFoodFilter) {
