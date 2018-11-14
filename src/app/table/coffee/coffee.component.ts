@@ -17,13 +17,14 @@ export class CoffeeComponent implements OnInit {
         { name: 'order', icon: 'assets/shopping-cart.png'}, 
         { name: 'profile', icon: 'assets/avatar.png' },
     ];
-    
     constructor(private tableService: TableService, private router: Router) {
     }
 
     ngOnInit() {
-        this.tableService.getTables().subscribe(data => {
-            this.tables = data;
+        // this.tableService.getTables().subscribe();
+        this.tableService.oTables.subscribe(data => {
+            // Chay moi khi observable next 
+            this.tables = data
         })
     }
     
