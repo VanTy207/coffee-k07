@@ -2,11 +2,11 @@
 <form>
   <div class="form-group">
     <label for="">Username</label>
-    <input type="text" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" placeholder="username">
+    <input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="username">
   </div>
   <div class="form-group">
     <label for="">Password</label>
     <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
   </div>
-  <button type="button" (click)="login(username, password)">Log in</button>
+  <button type="button" (click)="login(email, password)">Log in</button>
 </form>

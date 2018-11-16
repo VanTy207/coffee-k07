@@ -6,12 +6,10 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class FoodService {
-    token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViZTU0ZjRiMzY3OWFjZmY2NTQ1ZmQ0OSI'
-        + 'sImlhdCI6MTU0MTc2ODM0OH0.zHhRlIfT-iH4TA8wF0qVXqoPRrGimbLs67racCBo_g4';
     constructor(private httpClient: HttpClient) { }
 
     getFoods(): Observable<IFood[]> {
-        return this.httpClient.get(`http://lexuanquynh.com:8080/foods?access_token=${this.token}`)
+        return this.httpClient.get(`http://lexuanquynh.com:8080/foods`)
             .pipe(map((res: any) => {
                 return res.rows.map((food: any) => {
                     return {

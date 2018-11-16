@@ -1,7 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { TableService } from './services/table.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FoodService } from './services/food.service';
+import { AuthService } from './services/auth.service';
+import { HeaderInterceptor } from './services/http.interceptor';
 
 
 @NgModule({
@@ -17,7 +19,13 @@ export class CoreModule {
             ngModule: CoreModule,
             providers: [
                 TableService,
-                FoodService
+                FoodService,
+                AuthService,
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: HeaderInterceptor,
+                    multi: true
+                }
             ]
         };
     }

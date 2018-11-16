@@ -9,12 +9,10 @@ export class TableService {
     get oTables () {
         return this._tables.asObservable();
     }
-    private token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViZTU0ZjRiMzY3OWFjZmY2NTQ1ZmQ0OSI'
-        + 'sImlhdCI6MTU0MTc2ODM0OH0.zHhRlIfT-iH4TA8wF0qVXqoPRrGimbLs67racCBo_g4';
     constructor(private http: HttpClient) {
     }
     getTables() {
-        return this.http.get(`http://lexuanquynh.com:8080/tables?access_token=${this.token}`).pipe(
+        return this.http.get(`/tables`).pipe(
             map((res: any[]) => {
                 return res.map(i => {
                     const table: ITable = {
@@ -26,7 +24,7 @@ export class TableService {
                 })
             }), tap(data => {
                 this._tables.next(data)
-            }));
+            })).subscribe();
     }
 
     addTable(table: ITable) {
@@ -42,7 +40,7 @@ export class TableService {
     }
 
     getTableById(id: string) {
-        return this.http.get(`http://lexuanquynh.com:8080/tables/${id}?access_token=${this.token}`).pipe(
+        return this.http.get(`tables/${id}`).pipe(
             map((res: any) => {
                 const table: ITable = {
                     id: res.id,
