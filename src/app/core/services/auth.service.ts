@@ -11,7 +11,6 @@ export class AuthService {
         const encode = btoa(`${email}:${password}`);
         headers = headers.set("Authorization", `Basic ${encode}`);
         headers = headers.set("Content-Type", "application/json");
-
         return this.httpClient.post('/auth', {}, { headers: headers })
             .pipe(tap((res: any) => {
                 sessionStorage.setItem('token', res.token);

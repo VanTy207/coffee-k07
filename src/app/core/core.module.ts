@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FoodService } from './services/food.service';
 import { AuthService } from './services/auth.service';
 import { HeaderInterceptor } from './services/http.interceptor';
+import { AuthGuard } from './services/auth.guard.service';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ export class CoreModule {
                     provide: HTTP_INTERCEPTORS,
                     useClass: HeaderInterceptor,
                     multi: true
-                }
+                },
+                AuthGuard
             ]
         };
     }
