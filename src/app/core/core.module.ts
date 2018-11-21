@@ -5,6 +5,7 @@ import { FoodService } from './services/food.service';
 import { AuthService } from './services/auth.service';
 import { HeaderInterceptor } from './services/http.interceptor';
 import { AuthGuard } from './services/auth.guard.service';
+import { OrderService } from './services/order.service';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ export class CoreModule {
                     useClass: HeaderInterceptor,
                     multi: true
                 },
-                AuthGuard
+                AuthGuard,
+                OrderService
             ]
         };
     }

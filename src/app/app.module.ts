@@ -8,8 +8,9 @@ import { OrderModule } from './order/order.module';
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app.routing';
 import { CoreModule } from './core/core.module';
-
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OrderSummaryComponent } from './order/order-summary/order-summary.component';
 @NgModule({
   declarations: [
   ],
@@ -21,7 +22,9 @@ import { CoreModule } from './core/core.module';
     OrderModule,
     AuthModule,
     AppRoutingModule,
-    CoreModule.forRoot()
+    BrowserAnimationsModule,
+    CoreModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [LayoutComponent]

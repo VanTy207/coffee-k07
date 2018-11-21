@@ -48,6 +48,7 @@ h3, h4, h6 {
     display: flex;
     width: calc(100vw - 2rem);
     overflow-x: scroll;
+    height: 240px;
 }
 
 app-food-filter {
