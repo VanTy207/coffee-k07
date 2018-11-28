@@ -1,3 +1,16 @@
+
+<div class="modal" [hidden]="!isShowDetails">
+  <ul>
+    <li *ngFor="let item of foodsOrdered">
+      <span>
+        {{item.food.name}}
+      </span>
+      <span>
+        {{item.quality}} * {{item.food.price | currency}}
+      </span>
+    </li>
+  </ul>
+</div>
 <div class="order-summary">
   <div class="cart">
     <i class="fas fa-shopping-cart"></i>
@@ -7,10 +20,10 @@
   <div class="price">
     {{totalAmount}}
   </div>
-  <button class="btn-up">
+  <button class="btn-up" (click)="isShowDetails = !isShowDetails">
     <i class="fas fa-arrow-up"></i>
   </button>
-  <button class="btn-order">
+  <button class="btn-order" (click)="orderNow()">
     Order Now
   </button>
 </div>

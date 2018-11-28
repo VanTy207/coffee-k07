@@ -4,4 +4,5 @@ export interface ITable {
     orderName?: string;
     totalDishes?: number;
     status?: number;
+    orderId?: string;
 }

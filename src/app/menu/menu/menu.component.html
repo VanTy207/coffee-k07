@@ -1,0 +1,9 @@
+<app-header [title]="'Menu'"></app-header>
+<div class="content">
+  <div class="filter">
+    <app-food-filter *ngFor="let item of filters" [filter]="item" [activated]="item.active" (click)="selectFilter(item)"></app-food-filter>
+  </div>
+  <div class="food">
+    <router-outlet></router-outlet>
+  </div>
+</div>

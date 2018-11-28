@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IFood } from '../../interfaces/IFood';
+import { IFoodOrdered } from '../../interfaces/IFoodOrdered';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class OrderService {
@@ -14,12 +16,12 @@ export class OrderService {
         return this._foodOrdered.asObservable();
     }
     
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
     addFood(food: IFood){
         const foods = this._foodOrdered.getValue();
         const index = foods.findIndex(f => f.food.id === food.id);
-        if(index > 0) {
+        if(index > -1) {
             foods[index].quality++;
         } else {
             foods.push({
@@ -44,9 +46,27 @@ export class OrderService {
         }
         return total;
     }
-}
 
-interface IFoodOrdered {
-    food: IFood,
-    quality: number
+    createOrder(tableId: string,
+        customer: string,
+        total: Number,
+        status: Number,
+        details: IFoodOrdered[]){
+
+        const body = {
+            table: tableId,
+            customer: customer,
+            status: status, 
+            total: total,
+            details: details.map(food => {
+                return {
+                    food: food.food.id,
+                    foodName: food.food.name,
+                    quatity: food.quality,
+                    amount: food.quality * food.food.price
+                }
+            })
+        }
+        return this.http.post('/bills', body);
+    }
 }

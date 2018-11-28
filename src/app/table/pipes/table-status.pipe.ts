@@ -8,14 +8,14 @@ export class TableStatusPipe implements PipeTransform {
   transform(value: number, args?: any): any {
     let result;
     switch(value) {
-      case 1: 
-        result = 'Available';
+      case 0: 
+        result = 'Available'
         break;
-      case 2: 
+      case 1: 
         result = 'Serving';
         break;
-      case 3: 
-        result = 'Closed'
+      case 2: 
+        result = 'Closed';
         break;
       default: 
         result = 'NA';

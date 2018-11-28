@@ -18,7 +18,9 @@ export class TableService {
                     const table: ITable = {
                         id: i.id,
                         name: i.name,
-                        status: parseInt(i.status)
+                        status: i.bill ? i.bill.status : 0, 
+                        orderName: i.bill ? i.bill.customer : '',
+                        totalDishes: i.bill ? i.bill.details.length : 0
                     }
                     return table;
                 })

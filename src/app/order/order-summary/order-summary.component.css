@@ -42,3 +42,16 @@ button {
     background: #C8B496;
     padding: 1rem;
 }
+
+:host {
+    position: relative;
+}
+
+.modal {
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+    min-height: 200px;
+    background: white;
+}

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '../../core/services/order.service';
+import { IFoodOrdered } from '../../interfaces/IFoodOrdered';
 
 @Component({
   selector: 'app-order-summary',
@@ -8,8 +9,11 @@ import { OrderService } from '../../core/services/order.service';
 })
 export class OrderSummaryComponent implements OnInit {
 
+  isShowDetails: boolean = false;
   quatity: number = 0;
   totalAmount: number = 0;
+  foodsOrdered: IFoodOrdered[];
+  @Output() onOrderNow = new EventEmitter<any>();
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {
@@ -19,7 +23,12 @@ export class OrderSummaryComponent implements OnInit {
 
     this.orderService.foodOrdered.subscribe(data => {
       this.quatity = data.length;
+      this.foodsOrdered = data;
     })
+  }
+
+  orderNow() {
+    this.onOrderNow.emit({totalAmount: this.totalAmount, foodOrdered: this.foodsOrdered});
   }
 
 }

@@ -5,6 +5,7 @@ import { TableService } from '../core/services/table.service';
 import { IFoodFilter } from '../interfaces/IFoodFilter';
 import { IFood } from '../interfaces/IFood';
 import { FoodService } from '../core/services/food.service';
+import { OrderService } from '../core/services/order.service';
 
 @Component({
   selector: 'app-order',
@@ -17,7 +18,8 @@ export class OrderComponent implements OnInit {
   foods: IFood[];
   constructor(private route: ActivatedRoute,
     private tableService: TableService,
-    private foodService: FoodService) { }
+    private foodService: FoodService,
+    private orderSerivce: OrderService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.tableId;
@@ -66,6 +68,16 @@ export class OrderComponent implements OnInit {
       return f;
     });
     filter.active = true;
+  }
+
+  orderNow(data: any) {
+    this.orderSerivce.createOrder(this.table.id,
+      'Customer Name',
+      data.totalAmount,
+      1,
+      data.foodOrdered).subscribe(res => {
+        console.log(res);
+      });
   }
 
 }

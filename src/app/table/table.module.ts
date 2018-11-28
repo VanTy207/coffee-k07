@@ -4,10 +4,12 @@ import { CoffeeComponent } from './coffee/coffee.component';
 import { CommonModule } from '@angular/common';
 import { TableStatusPipe } from './pipes/table-status.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { TableRoutingModule } from './table.routing';
 
 @NgModule({
     imports: [
-        SharedModule
+        SharedModule,
+        TableRoutingModule
     ],
     exports: [
         CoffeeComponent

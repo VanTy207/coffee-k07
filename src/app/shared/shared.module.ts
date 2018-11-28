@@ -5,17 +5,24 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FoodFilterComponent } from './food-filter/food-filter.component';
 
 
 @NgModule({
     imports: [CommonModule, FormsModule, RouterModule],
     exports: [
-        CommonModule, FormsModule, HeaderComponent, LayoutComponent, PageNotFoundComponent
+        CommonModule,
+        FormsModule,
+        HeaderComponent,
+        LayoutComponent,
+        PageNotFoundComponent,
+        FoodFilterComponent
     ],
     declarations: [
         HeaderComponent,
         LayoutComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        FoodFilterComponent
     ],
     providers: [],
 })
