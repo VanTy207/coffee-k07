@@ -7,21 +7,21 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class OrderService {
     private _totalAmount = new BehaviorSubject(0);
-    get totalAmount () {
+    get totalAmount() {
         return this._totalAmount.asObservable();
     }
-    
+
     private _foodOrdered: BehaviorSubject<IFoodOrdered[]> = new BehaviorSubject(new Array());
-    get foodOrdered () {
+    get foodOrdered() {
         return this._foodOrdered.asObservable();
     }
-    
+
     constructor(private http: HttpClient) { }
 
-    addFood(food: IFood){
+    addFood(food: IFood) {
         const foods = this._foodOrdered.getValue();
         const index = foods.findIndex(f => f.food.id === food.id);
-        if(index > -1) {
+        if (index > -1) {
             foods[index].quality++;
         } else {
             foods.push({
@@ -35,13 +35,13 @@ export class OrderService {
         this._foodOrdered.next(foods);
     }
 
-    removeFood(){
+    removeFood() {
 
     }
 
     private calcTotal(foods: IFoodOrdered[]) {
         let total: number = 0;
-        for(let item of foods) {
+        for (let item of foods) {
             total = total + item.food.price * item.quality;
         }
         return total;
@@ -51,12 +51,12 @@ export class OrderService {
         customer: string,
         total: Number,
         status: Number,
-        details: IFoodOrdered[]){
+        details: IFoodOrdered[]) {
 
         const body = {
             table: tableId,
             customer: customer,
-            status: status, 
+            status: status,
             total: total,
             details: details.map(food => {
                 return {
@@ -68,5 +68,16 @@ export class OrderService {
             })
         }
         return this.http.post('/bills', body);
+    }
+
+    updateStatusOrder(billId: string, status: number) {
+        const body = {
+            status: status
+        };
+        return this.http.put('/bills/' + billId, body);
+    }
+
+    getOrderById(billId: string) {
+        return this.http.get('/bills/' + billId);
     }
 }

@@ -34,10 +34,14 @@ export class CoffeeComponent implements OnInit {
 
     onTapTable(table: ITable) {
         this.currentTable = table.name;
-        if (table.id) {
+        if (table.id && table.status === 0 ) {
             this.router.navigate(['order/' + table.id]);
-        } else {
-            alert('Table is not valid');
+        } else if (table.id && table.status > 0) {
+            const params = {
+                id: table.orderId,
+                tableId: table.id
+            };
+            this.router.navigate(['order', 'thankyou', params]);
         }
     }
 

@@ -1,3 +1,21 @@
-<p>
-  thankyou works!
-</p>
+<div>
+  Header
+</div>
+
+<div>
+  <ul>
+    <li *ngFor="let food of order.details">
+      {{food.foodName}} : {{food.quatity}}
+    </li>
+  </ul>
+</div>
+
+<div>
+  <button (click)="moreOrder()">
+    More Order
+  </button>
+
+  <button (click)="completeOrder()">
+    Done
+  </button>
+</div>

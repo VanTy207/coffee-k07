@@ -18,9 +18,10 @@ export class TableService {
                     const table: ITable = {
                         id: i.id,
                         name: i.name,
-                        status: i.bill ? i.bill.status : 0, 
+                        status: i.bill ? i.bill.status : 0,
                         orderName: i.bill ? i.bill.customer : '',
-                        totalDishes: i.bill ? i.bill.details.length : 0
+                        totalDishes: i.bill ? i.bill.details.length : 0,
+                        orderId: i.bill ? i.bill.id : '',
                     }
                     return table;
                 })
@@ -44,12 +45,12 @@ export class TableService {
     getTableById(id: string) {
         return this.http.get(`tables/${id}`).pipe(
             map((res: any) => {
-                const table: ITable = {
-                    id: res.id,
-                    name: res.name,
-                    status: parseInt(res.status)
-                }
-                return table;
+                // const table: ITable = {
+                //     id: res.id,
+                //     name: res.name,
+                //     status: parseInt(res.status)
+                // }
+                return res;
             }));
     }
 }

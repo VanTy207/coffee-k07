@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ITable } from '../interfaces/ITable';
 import { TableService } from '../core/services/table.service';
 import { IFoodFilter } from '../interfaces/IFoodFilter';
@@ -19,7 +19,8 @@ export class OrderComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private tableService: TableService,
     private foodService: FoodService,
-    private orderSerivce: OrderService) { }
+    private orderSerivce: OrderService,
+    private router: Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.tableId;
@@ -56,7 +57,6 @@ export class OrderComponent implements OnInit {
       icon: 'assets/tea-bag',
       title: 'Tea'
     }]
-    
     this.foodService.getFoods().subscribe(data => {
       this.foods = data;
     })
@@ -75,8 +75,9 @@ export class OrderComponent implements OnInit {
       'Customer Name',
       data.totalAmount,
       1,
-      data.foodOrdered).subscribe(res => {
+      data.foodOrdered).subscribe((res: any) => {
         console.log(res);
+        this.router.navigate(['order', 'thankyou', {id: res.id}]);
       });
   }
 
