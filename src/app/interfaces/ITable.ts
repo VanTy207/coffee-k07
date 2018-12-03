@@ -5,4 +5,5 @@ export interface ITable {
     totalDishes?: number;
     status?: number;
     orderId?: string;
+    bill?: any;
 }

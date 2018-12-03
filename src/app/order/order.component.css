@@ -34,13 +34,20 @@ h3, h4, h6 {
     width: 100%;
 }
 
+
+.customer {
+    display: flex;   
+    flex-direction: column; 
+}
 .customer h6, h4{
     margin: 0.5rem 1rem;
 }
-.customer h4 {
+.customer input {
     border: 1px solid white;
     border-radius: 4px;
-    padding: 1rem;
+    padding: 0.5rem;
+    margin: 0 1rem;
+    flex: 1;
 }
 
 .filter {

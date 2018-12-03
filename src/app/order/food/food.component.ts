@@ -9,7 +9,7 @@ import { OrderService } from '../../core/services/order.service';
 })
 export class FoodComponent implements OnInit {
   @Input() food: IFood;
-  quatity: number = 0;
+  @Input() quatity: number = 0;
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {
@@ -22,6 +22,7 @@ export class FoodComponent implements OnInit {
 
   decrease() {
     if(this.quatity === 0) return;
+    this.orderService.removeFood();
     this.quatity--;
   }
 }

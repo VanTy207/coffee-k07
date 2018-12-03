@@ -16,6 +16,7 @@ export class OrderComponent implements OnInit {
   table: ITable;
   filters: IFoodFilter[];
   foods: IFood[];
+  customer: string;
   constructor(private route: ActivatedRoute,
     private tableService: TableService,
     private foodService: FoodService,
@@ -26,6 +27,10 @@ export class OrderComponent implements OnInit {
     const id = this.route.snapshot.params.tableId;
     this.tableService.getTableById(id).subscribe(data => {
       this.table = data;
+      if (this.table.bill && this.table.bill.status > 0) {
+        this.customer = this.table.bill.customer;
+        this.orderSerivce.loadOrder(this.table.bill);
+      }
     });
 
     this.filters = [{
@@ -56,10 +61,20 @@ export class OrderComponent implements OnInit {
     }, {
       icon: 'assets/tea-bag',
       title: 'Tea'
-    }]
+    }];
     this.foodService.getFoods().subscribe(data => {
       this.foods = data;
-    })
+      if (this.table.bill) {
+        this.foods.map(item => {
+          const existsItem = this.table.bill.details.find(i => i.food === item.id);
+          if (existsItem) {
+            item.quatity = existsItem.quatity;
+          } else {
+            item.quatity = 0;
+          }
+        });
+      }
+    });
   }
 
   selectFilter(filter: IFoodFilter) {
@@ -71,14 +86,25 @@ export class OrderComponent implements OnInit {
   }
 
   orderNow(data: any) {
-    this.orderSerivce.createOrder(this.table.id,
-      'Customer Name',
-      data.totalAmount,
-      1,
-      data.foodOrdered).subscribe((res: any) => {
-        console.log(res);
-        this.router.navigate(['order', 'thankyou', {id: res.id}]);
-      });
+    if (!this.table.bill || this.table.bill.status === 0) {
+      this.orderSerivce.createOrder(this.table.id,
+        this.customer,
+        data.totalAmount,
+        1,
+        data.foodOrdered).subscribe((res: any) => {
+          console.log(res);
+          this.router.navigate(['order', 'thankyou', { id: res.id, tableId: this.table.id}]);
+        });
+    } else {
+      this.orderSerivce.updateOrder(this.table.bill.id, this.table.id,
+        this.customer,
+        data.totalAmount,
+        1,
+        data.foodOrdered).subscribe((res: any) => {
+          console.log(res);
+          this.router.navigate(['order', 'thankyou', { id: res.id, tableId: this.table.id}]);
+        });
+    }
   }
 
 }

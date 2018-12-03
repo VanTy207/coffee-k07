@@ -9,9 +9,9 @@ import { IFoodOrdered } from '../../interfaces/IFoodOrdered';
 })
 export class OrderSummaryComponent implements OnInit {
 
-  isShowDetails: boolean = false;
-  quatity: number = 0;
-  totalAmount: number = 0;
+  isShowDetails: Boolean = false;
+  quatity: Number = 0;
+  totalAmount: Number = 0;
   foodsOrdered: IFoodOrdered[];
   @Output() onOrderNow = new EventEmitter<any>();
   constructor(private orderService: OrderService) { }
@@ -19,12 +19,12 @@ export class OrderSummaryComponent implements OnInit {
   ngOnInit() {
     this.orderService.totalAmount.subscribe(data => {
       this.totalAmount = data;
-    })
+    });
 
     this.orderService.foodOrdered.subscribe(data => {
       this.quatity = data.length;
       this.foodsOrdered = data;
-    })
+    });
   }
 
   orderNow() {

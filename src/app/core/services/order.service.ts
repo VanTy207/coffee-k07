@@ -80,4 +80,44 @@ export class OrderService {
     getOrderById(billId: string) {
         return this.http.get('/bills/' + billId);
     }
+
+    updateOrder(billId: string,
+        tableId: string,
+        customer: string,
+        total: Number,
+        status: Number,
+        details: IFoodOrdered[]) {
+        const body = {
+            table: tableId,
+            customer: customer,
+            status: status,
+            total: total,
+            details: details.map(food => {
+                return {
+                    food: food.food.id,
+                    foodName: food.food.name,
+                    quatity: food.quality,
+                    amount: food.quality * food.food.price
+                };
+            })
+        };
+
+        return this.http.put('/bills/' + billId, body);
+    }
+
+    loadOrder(bill: any) {
+        this._totalAmount.next(bill.total);
+        const foodOrdered: IFoodOrdered[]  = bill.details.map(i => {
+            const food: IFoodOrdered = {
+                food: {
+                    id: i.food,
+                    name: i.foodName,
+                    price: i.amount / i.quatity
+                },
+                quality: i.quatity
+            };
+            return food;
+        });
+        this._foodOrdered.next(foodOrdered);
+    }
 }

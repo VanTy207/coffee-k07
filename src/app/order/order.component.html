@@ -7,14 +7,14 @@
         </div>
         <div class="customer">
             <h6>Customer's Name</h6>
-            <h4>{{table?.orderName}}</h4>
+            <input type="text" [(ngModel)]="customer"> 
         </div>
     </div>
     <div class="filter">
         <app-food-filter *ngFor="let item of filters" [filter]="item" [activated]="item.active" (click)="selectFilter(item)"></app-food-filter>
     </div>
     <div class="food">
-        <app-food *ngFor="let food of foods" [food]="food"></app-food>
+        <app-food *ngFor="let food of foods" [food]="food" [quatity]="food.quatity"></app-food>
     </div>
     <app-order-summary (onOrderNow)="orderNow($event)" ></app-order-summary>
 </div>

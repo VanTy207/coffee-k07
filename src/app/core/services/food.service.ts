@@ -16,8 +16,9 @@ export class FoodService {
                         id: food.id,
                         name: food.name,
                         price: food.price,
-                        cover: food.pictures[0]
-                    } as IFood
+                        cover: food.pictures[0],
+                        quatity: 0
+                    } as IFood;
                 })
             }))
     }
