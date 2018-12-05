@@ -19,7 +19,7 @@ export class FoodService {
                         cover: food.pictures[0],
                         quatity: 0
                     } as IFood;
-                })
-            }))
+                });
+            }));
     }
 }

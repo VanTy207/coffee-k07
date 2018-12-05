@@ -5,7 +5,7 @@
 <div>
   <ul>
     <li *ngFor="let food of order.details">
-      {{food.foodName}} : {{food.quatity}}
+      {{food.foodName}} : {{food.quatity}} - {{food.amount / food.quatity}}
     </li>
   </ul>
 </div>
