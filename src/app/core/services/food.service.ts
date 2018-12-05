@@ -9,7 +9,7 @@ export class FoodService {
     constructor(private httpClient: HttpClient) { }
 
     getFoods(): Observable<IFood[]> {
-        return this.httpClient.get(`http://lexuanquynh.com:8080/foods`)
+        return this.httpClient.get(`/foods`)
             .pipe(map((res: any) => {
                 return res.rows.map((food: any) => {
                     return {
