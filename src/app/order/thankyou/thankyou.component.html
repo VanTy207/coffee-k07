@@ -3,7 +3,7 @@
 </div>
 
 <div>
-  <ul>
+  <ul *ngIf="order && order.details">
     <li *ngFor="let food of order.details">
       {{food.foodName}} : {{food.quatity}} - {{food.amount / food.quatity}}
     </li>

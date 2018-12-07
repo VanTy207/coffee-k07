@@ -74,6 +74,10 @@ export class OrderService {
         const body = {
             status: status
         };
+        if(status === 0) {
+            this._foodOrdered.next([]);
+            this._totalAmount.next(0);
+        }
         return this.http.put('/bills/' + billId, body);
     }
 
