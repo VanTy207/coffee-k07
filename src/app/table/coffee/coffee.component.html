@@ -1,6 +1,6 @@
 <app-header [title]="'Layout'" ></app-header>
 <div class="container" *ngIf="tables.length">
-        <app-table *ngFor="let table of tables" [table]="table" (onTable)="onTapTable($event)"></app-table>
+        <app-table *ngFor="let table of tables" [table]="table" (tapTable)="onTapTable($event)"></app-table>
     </div>
     <div *ngIf="!tables.length" style="text-align: center;">
         No Tables

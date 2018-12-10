@@ -22,13 +22,12 @@ export class CoffeeComponent implements OnInit {
 
     ngOnInit() {
         this.tableService.oTables.subscribe(data => {
-            // Chay moi khi observable next 
-            this.tables = data
-        })
+            // Chay moi khi observable next
+            this.tables = data;
+        });
         this.tableService.getTables();
     }
-    
-    clickTab(item: ITab): void{
+    clickTab(item: ITab): void {
         alert('Clicked ' + item.name);
     }
 

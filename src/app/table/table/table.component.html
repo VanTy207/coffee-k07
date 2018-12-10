@@ -1,6 +1,6 @@
-<div class="table" (click)="tapOnTable(table)">
+<div class="table" >
     <div class="t-header">
-        <label>{{table.name}}</label>
+        <label (click)="tapOnTable(table)">{{table.name}}</label>
         <label>{{table.orderName}}</label>
     </div>
     <div class="t-body">

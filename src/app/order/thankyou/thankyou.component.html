@@ -5,6 +5,7 @@
 <div>
   <ul *ngIf="order && order.details">
     <li *ngFor="let food of order.details">
+      <img style="height: 100px;" [src]="food.cover" alt="">
       {{food.foodName}} : {{food.quatity}} - {{food.amount / food.quatity}}
     </li>
   </ul>
